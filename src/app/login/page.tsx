@@ -1,11 +1,9 @@
-// src/app/login/page.tsx
 'use client';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/hooks/useAuth';
 import { FirebaseError } from 'firebase/app';
 import { signInWithGoogle } from '@/lib/auth';
-import { log } from 'console';
 
 export default function Login() {
   const [error, setError] = useState<string>('');
