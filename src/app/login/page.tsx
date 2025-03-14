@@ -10,13 +10,13 @@ export default function Login() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const router = useRouter();
   const { user } = useAuth();
-  
+
   useEffect(() => {
     if (user && !isLoading) {
       router.push('/dashboard');
     }
   }, [user, isLoading, router]);
-  
+
   const handleGoogleSignIn = async () => {
     try {
       setIsLoading(true);
@@ -25,7 +25,7 @@ export default function Login() {
       router.push('/dashboard');
     } catch (error) {
       console.error('Google sign-in error:', error);
-      
+
       // Handle specific Firebase errors
       if (error instanceof FirebaseError) {
         switch (error.code) {
@@ -51,7 +51,7 @@ export default function Login() {
       setIsLoading(false);
     }
   };
-  
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 p-4">
       <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
@@ -59,13 +59,13 @@ export default function Login() {
           <h1 className="text-2xl font-bold">Welcome Back</h1>
           <p className="mt-2 text-gray-600">Please sign in to continue</p>
         </div>
-        
+
         {error && (
           <div className="p-4 text-sm text-red-700 bg-red-100 rounded-lg" role="alert">
             {error}
           </div>
         )}
-        
+
         <button
           onClick={handleGoogleSignIn}
           disabled={isLoading}

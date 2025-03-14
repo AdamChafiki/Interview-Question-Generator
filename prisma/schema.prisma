@@ -12,3 +12,18 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Job {
+  id                 Int                 @id @default(autoincrement())
+  title              String
+  description        String
+  userId             String
+  interviewQuestions InterviewQuestion[]
+}
+
+model InterviewQuestion {
+  id       Int    @id @default(autoincrement())
+  question String
+  jobId    Int
+  job      Job    @relation(fields: [jobId], references: [id])
+}

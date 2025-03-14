@@ -1,4 +1,3 @@
-// src/hooks/useAuth.ts
 import { useState, useEffect } from 'react';
 import { User } from 'firebase/auth';
 import { onAuthStateChange } from '@/lib/auth';
@@ -14,7 +13,7 @@ export function useAuth(): AuthState {
     user: null,
     loading: true,
   });
-  
+
   useEffect(() => {
     // Subscribe to auth state changes
     const unsubscribe = onAuthStateChange((firebaseUser) => {
@@ -23,10 +22,10 @@ export function useAuth(): AuthState {
         loading: false,
       });
     });
-    
+
     // Cleanup subscription on unmount
     return () => unsubscribe();
   }, []);
-  
+
   return state;
 }
